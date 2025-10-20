@@ -1,0 +1,2 @@
+# Liceul-Teoretic-Lapusna
+LTL
