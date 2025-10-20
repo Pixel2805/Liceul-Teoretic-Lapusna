@@ -1,0 +1,404 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Liceul Teoretic Lăpușna</title>
+  <link rel="stylesheet" href="styles.css" />
+  <meta name="description" content="Liceul Teoretic Lăpușna — informații, galerie, harta și contact." />
+  <meta name="theme-color" content="#d7c7af" />
+  <style>
+    :root{
+      --beige: #ccc09f;  /*background site */
+      --muted-beige: #ccc09f;
+      --gray-dark: #ccc09f;
+      --gray: #f8f7f7;
+      --card-bg: rgba(31, 32, 39, 0.233);
+      --accent: #b22222; /* roșu */
+      --accent-dark: #c50d0d;
+      --text: #fffdfd;
+    }
+
+    /* bază (fallback) */
+    html,body{height:100%;margin:0}
+    body{
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg,var(--muted-beige),var(--beige));
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    .site-header{
+      background: linear-gradient(90deg,var(--gray-dark),#24282c);
+      color:var(--beige);
+      padding:1.25rem 0;
+      text-align: center;
+    }
+    .accent{ color:var(--accent); font-weight:700; text-align: center;}
+
+    .card{
+      background: linear-gradient(180deg, rgb(91, 92, 97), var(--card-bg));
+      border:1px solid rgba(19, 17, 17, 0);
+      border-radius:8px;
+      padding:1rem;
+      margin:1rem 0;
+      text-align: center;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: center;
+    }
+    .info-table th {
+      text-align: center;
+      padding: 0.65rem;
+      background: rgba(54, 50, 50, 0.027);
+      color: #ffffff;
+      width: 220px;
+      vertical-align: middle;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    }
+    .info-table td {
+      padding: 0.65rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      vertical-align: middle;
+      text-align: center;
+      color: #ffffff;
+    }
+
+    /* make all gallery images the same size */
+    .thumb,
+    .thumb-side{
+      width:100%;
+      max-width:320px;
+      height:160px;
+      object-fit:cover;
+      border-radius:6px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      display:block;
+      margin: 0 auto;
+    }
+
+    /* gallery layout */
+    .gallery-row{ 
+      display:flex; 
+      gap:0.75rem; 
+      align-items:center;
+      justify-content: center;
+      flex-wrap:wrap; 
+    }
+    .gallery-row figure{ 
+      margin:0; 
+      flex:1 1 48%; 
+      display:flex; 
+      flex-direction:column; 
+      align-items:center; 
+    }
+    .gallery-caption{ 
+      margin-top:0.5rem; 
+      color:#ffffff;
+      font-size:0.95rem;
+      text-align: center;
+    }
+
+    /* CENTER specifically Harta + Contact text */
+    #harta .info-table th,
+    #harta .info-table td,
+    #contact .info-table th,
+    #contact .info-table td {
+      text-align: center !important;
+      color: #ffffff;
+    }
+
+    @media (max-width:700px){
+      .info-table th{ display:block; width:100%; }
+      .info-table td{ display:block; width:100%; }
+      .thumb, .thumb-side{ max-width:100%; height:140px; }
+      .gallery-row figure{ flex-basis:100%; max-width:100%; }
+    }
+
+    a{ 
+      color:#ff4444; 
+      text-decoration:none;
+      transition: color 0.2s;
+    }
+    a:hover {
+      color: #ff6666;
+    }
+    
+    .site-footer{
+      background:linear-gradient(90deg,#3d4146,#2e3236);
+      color:#ffffff;
+      padding:1rem 0;
+      text-align:center;
+    }
+
+    button{
+      background:var(--accent);
+      color:#ffffff;
+      border:0;
+      padding:0.5rem 0.75rem;
+      border-radius:6px;
+      cursor:pointer;
+      text-align: center;
+      transition: background-color 0.2s;
+    }
+    button:hover {
+      background: var(--accent-dark);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    /* Added styles for better typography */
+    h1, h2 {
+      color: #ffffff;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+    }
+
+    .tagline {
+      color: #ffffff;
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: #ffffff;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      transition: background-color 0.2s;
+    }
+
+    nav a:hover {
+      background: rgba(255,255,255,0.1);
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <h1>Liceul Teoretic <span class="accent">Lăpușna</span></h1>
+      <p class="tagline">Educație de calitate în inima satului Lăpușna</p>
+      <nav>
+        <a href="#despre">Despre</a>
+        <a href="#facilitati">Facilități</a>
+        <a href="#galerie">Galerie</a>
+        <a href="#harta">Harta</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Despre noi (tabel) -->
+    <section id="despre">
+      <div class="card">
+        <h2>Despre noi</h2>
+        <table class="info-table" aria-describedby="despre-desc">
+          <tbody>
+            <tr>
+              <th>Descriere</th>
+              <td id="despre-desc">Liceul Teoretic Lăpușna oferă o educație de calitate, având ca scop dezvoltarea armonioasă a elevilor, atât pe plan intelectual, cât și moral. Liceul funcționează de peste 30 de ani, promovând respectul, performanța și implicarea civică.</td>
+            </tr>
+            <tr>
+              <th>Adresă</th>
+              <td>Sat Lăpușna, Str. Mihai Eminescu, Raionul Hîncești, MD-3431</td>
+            </tr>
+            <tr>
+              <th>Misiune</th>
+              <td>Formarea tinerilor responsabili, critici și creativi, pregătiți pentru studii superioare și viața activă în comunitate.</td>
+            </tr>
+            <tr>
+              <th>Istoric</th>
+              <td>Instituție educațională cu tradiție locală, înființată acum mai multe decenii, adaptându-se continuu la cerințele curriculare moderne.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Facilități (tabel) -->
+    <section id="facilitati">
+      <div class="card">
+        <h2>Facilități</h2>
+        <table class="info-table" aria-describedby="fac-desc">
+          <tbody>
+            <tr>
+              <th>Săli de clasă</th>
+              <td>Săli moderne și bine echipate, cu mobilier ergonomic și spațiu pentru activități didactice și collaborative.</td>
+            </tr>
+            <tr>
+              <th>Laboratoare</th>
+              <td>Laborator de informatică și laboratoare de științe dotate cu echipamente adecvate practicilor experimentale.</td>
+            </tr>
+            <tr>
+              <th>Bibliotecă</th>
+              <td>Bibliotecă cu colecții de manuale, lucrări științifice și materiale auxiliare pentru elevi și profesori.</td>
+            </tr>
+            <tr>
+              <th>Sport & Exterior</th>
+              <td>Sală de sport, teren exterior și facilități pentru activități fizice și competiții școlare.</td>
+            </tr>
+            <tr>
+              <th>Internet</th>
+              <td>Acces la internet în întreaga unitate pentru activități educaționale și resurse digitale.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Galerie foto (tabel) -->
+    <section id="galerie">
+      <div class="card">
+        <h2>Galerie foto</h2>
+        <table class="info-table" aria-describedby="gal-desc">
+          <tbody>
+
+            <tr>
+              <th>Fațada liceului</th>
+              <td>
+                <div class="gallery-row">
+                  <figure>
+                    <img class="thumb" src="https://scontent.fkiv10-1.fna.fbcdn.net/v/t39.30808-6/299827792_443086567835005_167239338625964250_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=K5JmbA0IPgoQ7kNvwEGlR19&_nc_oc=Adlq6FSFdM-MxpQYgaeFUVSz4PCpyNjVuPeVKh3SMORRuY0xPuqWjhl1ts_nNe_tNWU&_nc_zt=23&_nc_ht=scontent.fkiv10-1.fna&_nc_gid=UjR_sBMRHOxIRbWDFb6aqQ&oh=00_Aff65PlzWeI0vYIjIWbXkhvS8atrPNaLi9CcACcwldwZEg&oe=68F92664" alt="Fațada liceului" />
+                    <figcaption class="gallery-caption">Fondat: 01.09.1995</figcaption>
+                  </figure>
+
+                  <figure>
+                    <img class="thumb-side" src="https://scontent.fkiv10-1.fna.fbcdn.net/v/t39.30808-6/499919733_2807301046324763_103594262263349161_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=127cfc&_nc_ohc=W-GP4ANg6FAQ7kNvwHB0aUs&_nc_oc=AdlljY0mR0yzZiWPHF-AYRrJAy9PVTQy1aZfYQDCCN9J3EEqLfHzlpbRR-k3m2WI2QE&_nc_zt=23&_nc_ht=scontent.fkiv10-1.fna&_nc_gid=jmruDrDVlcSO1u9STmzY7w&oh=00_Afcs7Gd5YEffatKW0aKSLvfTs71NO7JQbzq8rHFxWDGnPA&oe=68FC1C93"  alt="Activitate 1" />
+                    <figcaption class="gallery-caption">Cadrele didactice</figcaption>
+                  </figure>
+                </div>
+              </td>
+            </tr>
+
+            <tr>
+              <th>Curtea / evenimente</th>
+              <td>
+                <div class="gallery-row">
+                  <figure>
+                    <img class="thumb" src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrAvv1fdnwRTMOxEoVXx11ZawvJykWV5-sBAU250SCQoT5UKybIzsgwat8bJeTKcn4lp3wg5fzfJTS7rHl8DCe4Jd1ZM359R-9AbywjminxMljpwrdg6t_SwOszvtjyPjKL3RP3yQ=s680-w680-h510-rw" alt="Curtea liceului" />
+                    <figcaption class="gallery-caption">Curtea liceului în față</figcaption>
+                  </figure>
+
+                  <figure>
+                    <img class="thumb-side" src="https://scontent.fkiv10-1.fna.fbcdn.net/v/t39.30808-6/501525141_2807283319659869_5606475975873672873_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=cc71e4&_nc_ohc=sogBvWTBTfUQ7kNvwH7Uqr3&_nc_oc=AdnpQrUCCq0_YzU7gkFw00zW5IUt3FJHO9ZV5ZEm9uzI8aPD1R4kTQGk5uAnVw7_qYk&_nc_zt=23&_nc_ht=scontent.fkiv10-1.fna&_nc_gid=Os4SJwrLr9OMQEU9_o80Dg&oh=00_AfeI7wNFZmVluOQhHSRbI1j_cFyg9AHASv4uBSZGj-Soag&oe=68FBEAFB" alt="Activitate 2" />
+                    <figcaption class="gallery-caption">Curtea liceului în spate</figcaption>
+                  </figure>
+                </div>
+              </td>
+            </tr>
+
+            <tr>
+              <th>Săli & Profesori</th>
+              <td>
+                <div class="gallery-row">
+                  <figure>
+                    <img class="thumb" src="https://scontent.fkiv10-1.fna.fbcdn.net/v/t39.30808-6/507405233_3211822008984767_2940490009021701815_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=127cfc&_nc_ohc=LOospEMjz-IQ7kNvwEiSjcx&_nc_oc=Adl_q9j1aJY-STDNeWGS2jzv_33XaTPcU54u-UPIfDhLN68hqTW-3WrrI3oI3B92rPo&_nc_zt=23&_nc_ht=scontent.fkiv10-1.fna&_nc_gid=4BG7eEBG-v6Fmo4MbD_GVw&oh=00_Afee71kueQhxElaudtfAJhd3DUiTY1DthLD2PrRRHITgqw&oe=68FBDEFE" alt="Sala de clasă" />
+                    <figcaption class="gallery-caption">Sala de modelare și imprimare 3D</figcaption>
+                  </figure>
+
+                  <figure>
+                    <img class="thumb-side" src="https://scontent.fkiv10-1.fna.fbcdn.net/v/t39.30808-6/477311682_1040143261462663_7506057038613355957_n.jpg?_nc_cat=111&ccb=17&_nc_sid=833d8c&_nc_ohc=gWNVyxNEd_IQ7kNvwHeSUwT&_nc_oc=Adkq8RDraY0dayVI6i2n60QpNjp0LfzkUcKIS9LwVwOGtYZJ0oHg_lyJs4mNyO1oeto&_nc_zt=23&_nc_ht=scontent.fkiv10-1.fna&_nc_gid=AWu9Ag8XOEs85D0AgqjYlw&oh=00_AffeO6AK_geuJq1ofEFWKkMVf7dFjzBSVbex33XIzn1K8g&oe=68FC0674" alt="Activitate 3" />
+                    <figcaption class="gallery-caption">Moment dintr-o activitate școlară</figcaption>
+                  </figure>
+                </div>
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+        <p style="margin-top:0.75rem; font-size:0.95rem; color:var(--gray);"></p>
+      </div>
+    </section>
+
+    <!-- Harta (tabel) -->
+    <section id="harta">
+      <div class="card">
+        <h2>Harta</h2>
+        <table class="info-table" aria-describedby="harta-desc">
+          <tbody>
+            <tr>
+              <th>Adresă exactă</th>
+              <td>Str. Mihai Eminescu, MD-3431, Lăpuşna, Republica Moldova</td>
+            </tr>
+            <tr>
+              <th>Locație</th>
+              <td>
+                <div style="width:100%;height:30;padding-bottom:50%;position:relative;">
+                  <iframe
+                    src="https://www.google.com/maps?q=Liceul%20Teoretic%20L%C4%83pu%C8%99na%20H%C3%AEnce%C8%99ti&output=embed"
+                    style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;"
+                    allowfullscreen
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    title="Harta Liceul Teoretic Lăpușna, Raionul Hîncești">
+                  </iframe>
+                </div>
+                <div style="margin-top:0.5rem; color:var(--gray); font-size:0.95rem;">Dacă harta nu arată corect, folosiți linkul: <a href="https://www.google.com/maps/search/?api=1&query=Liceul+Teoretic+L%C4%83pu%C8%99na+H%C3%AEnce%C8%99ti" target="_blank" rel="noopener">Deschide pe Google Maps</a></div>
+              </td>
+            </tr>
+            <tr>
+              <th>Notă</th>
+              <td>Coordonatele afișate sunt estimate pe baza denumirii și raionului; pentru poziționare precisă, folosiți coordonate GPS (46.88774657163052, 28.40867642966826) sau actualizați locația în Google Maps.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Contact (tabel) -->
+    <section id="contact">
+      <div class="card">
+        <h2>Contact</h2>
+        <table class="info-table" aria-describedby="contact-desc">
+          <tbody>
+            <tr>
+              <th>Email principal</th>
+              <td><a href="mailto:lapusna@mail.ru">lapusna@mail.ru</a></td>
+            </tr>
+            <tr>
+              <th>Email secundar</th>
+              <td><a href="mailto:ltlapusna@gmail.com">ltlapusna@gmail.com</a></td>
+            </tr>
+            <tr>
+              <th>Telefon</th>
+              <td><a href="tel:+37326951280">0269 51 280</a></td>
+            </tr>
+            <tr>
+              <th>Program secretariat</th>
+              <td>Luni–Vineri: 08:00–16:00</td>
+            </tr>
+            <tr>
+              <th>Persoană de contact</th>
+              <td>Director: Rotaru Viorica</td>
+            </tr>
+            <tr>
+              <th>Email site designer</th>
+              <td><a href="mailto:balanantonin8@gmail.com">balanantonin8@gmail.com</a></td> 
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2025 Liceul Teoretic Lăpușna. Design by Antonin.</p>
+    </div>
+</html></ter>
+</body>
+</html>
